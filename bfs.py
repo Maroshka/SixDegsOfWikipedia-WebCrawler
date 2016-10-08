@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from crawler import *
 
 def BFS(start, goal):
-	scraped = []
+	crawled = []
 	path = []
 	q = Q.Queue()
 	if start == goal:
@@ -13,11 +13,11 @@ def BFS(start, goal):
 	q.put(start)
 	while not q.empty():
 		url = q.get()
-		if url[-1] not in scraped:
+		if url[-1] not in crawled:
 			path.append(url)
 			fullUrl = "http://en.wikipedia.org"+url[-1]
 			links = getLinks(fullUrl)
-			scraped.append(url[-1])
+			crawled.append(url[-1])
 			if goal in links:
 				path.append(goal)
 				return path
